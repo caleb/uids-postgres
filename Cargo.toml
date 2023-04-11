@@ -18,12 +18,12 @@ pg_test = []
 
 [dependencies]
 nanoid = "0.4.0"
-pgx = "0.6.1"
+pgx = "0.7.4"
 rusty_ulid = "1.0.0"
 svix-ksuid = "0.6.0"
 
 [dev-dependencies]
-pgx-tests = "0.6.1"
+pgx-tests = "0.7.4"
 
 [profile.dev]
 panic = "unwind"
