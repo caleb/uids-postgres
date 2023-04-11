@@ -144,6 +144,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "bindgen"
+version = "0.60.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "062dddbc1ba4aca46de6338e2bf87771414c335f7b2f2036e8f3e9befebf88e6"
+dependencies = [
+ "bitflags",
+ "cexpr",
+ "clang-sys",
+ "lazy_static",
+ "lazycell",
+ "peeking_take_while",
+ "proc-macro2",
+ "quote",
+ "regex",
+ "rustc-hash",
+ "shlex",
+]
+
+[[package]]
 name = "bit-set"
 version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -163,6 +182,18 @@ name = "bitflags"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
+
+[[package]]
+name = "bitvec"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1bc2832c24239b0141d5674bb9174f9d68a8b5b3f2753311927c172ca46f7e9c"
+dependencies = [
+ "funty",
+ "radium",
+ "tap",
+ "wyz",
+]
 
 [[package]]
 name = "block-buffer"
@@ -550,6 +581,12 @@ checksum = "a9c384f161156f5260c24a097c56119f9be8c798586aecc13afbcbe7b7e26bf8"
 dependencies = [
  "percent-encoding",
 ]
+
+[[package]]
+name = "funty"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6d5a32815ae3f33302d95fdcb2ce17862f8c65363dcfd29360480ba1001fc9c"
 
 [[package]]
 name = "futures-channel"
@@ -1091,9 +1128,9 @@ dependencies = [
  "heapless",
  "num-traits",
  "once_cell",
- "pgx-macros",
- "pgx-pg-sys",
- "pgx-utils",
+ "pgx-macros 0.4.5",
+ "pgx-pg-sys 0.4.5",
+ "pgx-utils 0.4.5",
  "quote",
  "seahash",
  "serde",
@@ -1106,16 +1143,74 @@ dependencies = [
 ]
 
 [[package]]
+name = "pgx"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "708693428ee16491645c1c2795f6777a78b9b1d08ab2e481a82b7977c9814b56"
+dependencies = [
+ "atomic-traits",
+ "bitflags",
+ "bitvec",
+ "cstr_core",
+ "eyre",
+ "heapless",
+ "libc",
+ "once_cell",
+ "pgx-macros 0.6.1",
+ "pgx-pg-sys 0.6.1",
+ "pgx-utils 0.6.1",
+ "quote",
+ "seahash",
+ "seq-macro",
+ "serde",
+ "serde_cbor",
+ "serde_json",
+ "thiserror",
+ "tracing",
+ "tracing-error",
+ "uuid",
+]
+
+[[package]]
 name = "pgx-macros"
 version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b854e9b42fa8940b5fa393915df75db559384f14663c8966eb5161b554ff5842"
 dependencies = [
- "pgx-utils",
+ "pgx-utils 0.4.5",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
  "unescape",
+]
+
+[[package]]
+name = "pgx-macros"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0050ca15df7dbfe718f9006d2b9a38d2a00a40934d8154450cdde6323b58b690"
+dependencies = [
+ "pgx-utils 0.6.1",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+ "unescape",
+]
+
+[[package]]
+name = "pgx-pg-config"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "000bba0f67f2aa20e971a6127a8971bd85a6b724d3e95d9066f64816de3b4e67"
+dependencies = [
+ "dirs",
+ "eyre",
+ "owo-colors",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "toml",
+ "url",
 ]
 
 [[package]]
@@ -1124,7 +1219,7 @@ version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57be652efd8d69525ba4ec04743b2aa2feb024ef7c5d39d35f9bf5638bf64d48"
 dependencies = [
- "bindgen",
+ "bindgen 0.59.2",
  "build-deps",
  "color-eyre",
  "eyre",
@@ -1132,11 +1227,33 @@ dependencies = [
  "num_cpus",
  "once_cell",
  "owo-colors",
- "pgx-macros",
- "pgx-utils",
+ "pgx-macros 0.4.5",
+ "pgx-utils 0.4.5",
  "proc-macro2",
  "quote",
  "rayon",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "pgx-pg-sys"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b6bd3fd6e1bcbfed67da7ac2dc71986a9f1396aeaec3d449d0697eb54909b34a"
+dependencies = [
+ "bindgen 0.60.1",
+ "eyre",
+ "libc",
+ "memoffset 0.6.5",
+ "once_cell",
+ "pgx-macros 0.6.1",
+ "pgx-pg-config",
+ "pgx-utils 0.6.1",
+ "proc-macro2",
+ "quote",
+ "rayon",
+ "shlex",
+ "sptr",
  "syn 1.0.109",
 ]
 
@@ -1150,9 +1267,9 @@ dependencies = [
  "libc",
  "once_cell",
  "owo-colors",
- "pgx",
- "pgx-macros",
- "pgx-utils",
+ "pgx 0.4.5",
+ "pgx-macros 0.4.5",
+ "pgx-utils 0.4.5",
  "postgres",
  "regex",
  "serde",
@@ -1191,6 +1308,31 @@ dependencies = [
  "tracing-subscriber",
  "unescape",
  "url",
+]
+
+[[package]]
+name = "pgx-utils"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "62cdc413efcd90a1e94c7f09dea24ec1ecfa1275350cbe378a8776eb7b5448f9"
+dependencies = [
+ "atty",
+ "convert_case",
+ "cstr_core",
+ "eyre",
+ "petgraph",
+ "proc-macro2",
+ "quote",
+ "regex",
+ "seq-macro",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "syn 1.0.109",
+ "tracing",
+ "tracing-error",
+ "tracing-subscriber",
+ "unescape",
 ]
 
 [[package]]
@@ -1322,6 +1464,12 @@ checksum = "4424af4bf778aae2051a77b60283332f386554255d722233d09fbfc7e30da2fc"
 dependencies = [
  "proc-macro2",
 ]
+
+[[package]]
+name = "radium"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc33ff2d4973d518d823d61aa239014831e521c75da58e3df4840d3f47749d09"
 
 [[package]]
 name = "rand"
@@ -1585,6 +1733,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "seq-macro"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6b44e8fc93a14e66336d230954dda83d18b4605ccace8fe09bc7514a71ad0bc"
+
+[[package]]
 name = "serde"
 version = "1.0.160"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1731,6 +1885,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "sptr"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3b9b39299b249ad65f3b7e96443bad61c02ca5cd3589f46cb6d610a0fd6c0d6a"
+
+[[package]]
 name = "stable_deref_trait"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1808,6 +1968,12 @@ dependencies = [
  "walkdir",
  "yaml-rust",
 ]
+
+[[package]]
+name = "tap"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
 
 [[package]]
 name = "termcolor"
@@ -2041,7 +2207,7 @@ name = "uids"
 version = "0.2.0"
 dependencies = [
  "nanoid",
- "pgx",
+ "pgx 0.6.1",
  "pgx-tests",
  "rusty_ulid",
  "svix-ksuid",
@@ -2368,6 +2534,15 @@ name = "windows_x86_64_msvc"
 version = "0.48.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1a515f5799fe4961cb532f983ce2b23082366b898e52ffbce459c86f67c8378a"
+
+[[package]]
+name = "wyz"
+version = "0.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "05f360fc0b24296329c78fda852a1e9ae82de9cf7b27dae4b7f62f118f77b9ed"
+dependencies = [
+ "tap",
+]
 
 [[package]]
 name = "xml-rs"
