@@ -22,7 +22,7 @@ rusty_ulid = "1.0.0"
 svix-ksuid = "0.6.0"
 
 [dev-dependencies]
-pgx-tests = "0.4.5"
+pgx-tests = "0.6.1"
 
 [profile.dev]
 panic = "unwind"
