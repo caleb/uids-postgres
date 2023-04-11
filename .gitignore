@@ -3,4 +3,8 @@
 /target
 *.iml
 **/*.rs.bk
-Cargo.lock
+
+# Devenv
+.devenv*
+devenv.local.nix
+
